@@ -15,24 +15,26 @@ Devolver livro.
 
 class Biblioteca(Livro):
     def __init__(self):
-        self.livros = [{
-
-}]
+        self.livros = []
     
     def cadastro_livro(self):
-        titulo = input("Digite o título do livro: ").title().strip()
-        autor = Livro.verifica_autor(titulo)
-        genero = input("Digite o gênero do livro: ").title().strip()
-        status = input("Digite o status do livro: ").title().strip()
-        novo_livro = Livro(titulo, autor, genero, status)
-        
+        novo_titulo = input('Digite o título do livro: ').title().strip()
+        novo_autor = input('Digite o nome do Autor: ').title().strip()
+        novo_genero = input('Digite o gênero do livro: ').title().strip()
+        status = input('Digite o status do livro: ').title().strip()
+        novo_livro = Livro(novo_titulo, novo_autor, novo_genero, status)
+        self.livros.append(novo_livro)
         self.adicionar_livro(novo_livro)
-        print(f'Livro {titulo} cadastrado na biblioteca')
+        print(self.livros)
+        print(f'Livro {novo_titulo} cadastrado na biblioteca')
 
-    def adicionar_livro(self):
-        self.livros.append(self)
-
-
+    def adicionar_livro(self, novo_livro):
+        Livro.titulo_livro(novo_livro)
+        Livro.autor_livro(novo_livro)
+        Livro.genero_livro(novo_livro)
+        Livro.status_livro(novo_livro)
+        Biblioteca()    
+            
     def remover_livro(self):
         pass
 
@@ -50,7 +52,9 @@ class Biblioteca(Livro):
 
     def verifica_livro(valor):
         pass
-    
 
-    def verifica_livro(valor):
-        pass
+    def exibir_biblioteca(self):
+        print(f'Informações do livro cadastrado!\nTitulo do Livro: {self.titulo}\nAutor: {self.autor}\nGenero: {self.genero}\nStatus: {self.status}')
+
+    def __str__(self):
+        return self.livros
